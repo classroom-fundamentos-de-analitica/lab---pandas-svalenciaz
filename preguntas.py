@@ -175,7 +175,7 @@ def pregunta_10():
     tabla = tabla.groupby('_c1')['_c2'].sum()
     tabla = tabla.map(lambda lista: ':'.join(sorted(list(lista))))
     # tabla._c2 = ':'.join(sorted(tabla._c2))
-    return tabla
+    return pd.DataFrame(tabla)
 
 
 def pregunta_11():
