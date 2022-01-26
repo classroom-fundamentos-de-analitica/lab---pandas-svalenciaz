@@ -174,7 +174,6 @@ def pregunta_10():
     tabla['_c2'] = tabla._c2.astype(str)
     tabla = tabla.groupby('_c1')['_c2'].sum()
     tabla = tabla.map(lambda lista: ':'.join(sorted(list(lista))))
-    # tabla._c2 = ':'.join(sorted(tabla._c2))
     return pd.DataFrame(tabla)
 
 
@@ -194,7 +193,10 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-    return
+    tabla = tbl1.copy()
+    tabla = tabla.groupby('_c0').sum()
+    tabla['_c4'] = tabla['_c4'].map(lambda lista: ','.join(sorted(list(lista))))
+    return tabla
 
 
 def pregunta_12():
@@ -212,7 +214,13 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    return
+    tabla = tbl2.copy()
+    tabla['_c5b'] = tabla._c5b.astype(str)
+    tabla['_c5'] =  tabla._c5a + ':' + tabla._c5b + ','
+    tabla = tabla.groupby('_c0')['_c5'].sum()
+    tabla = pd.DataFrame(tabla).reset_index()
+    tabla['_c5'] = tabla['_c5'].map(lambda string: ','.join(sorted(string[:-1].split(','))))
+    return tabla
 
 
 def pregunta_13():
@@ -229,18 +237,4 @@ def pregunta_13():
     E    275
     Name: _c5b, dtype: int64
     """
-    return
-
-print('1', pregunta_01())
-print('2', pregunta_02())
-print('3', pregunta_03())
-print('4', pregunta_04())
-print('5', pregunta_05())
-print('6', pregunta_06())
-print('7', pregunta_07())
-print('8', pregunta_08())
-print('9', pregunta_09())
-print('10', pregunta_10())
-print('11', pregunta_11())
-print('12', pregunta_12())
-print('13', pregunta_13())
+    return pd.merge(tbl0, tbl2, on='_c0').groupby('_c1')['_c5b'].sum()
