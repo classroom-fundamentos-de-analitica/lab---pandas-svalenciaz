@@ -196,7 +196,7 @@ def pregunta_11():
     tabla = tbl1.copy()
     tabla = tabla.groupby('_c0').sum()
     tabla['_c4'] = tabla['_c4'].map(lambda lista: ','.join(sorted(list(lista))))
-    return tabla
+    return tabla.reset_index()
 
 
 def pregunta_12():
