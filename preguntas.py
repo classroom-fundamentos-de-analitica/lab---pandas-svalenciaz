@@ -170,7 +170,12 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    return
+    tabla = tbl0.copy()
+    tabla['_c2'] = tabla._c2.astype(str)
+    tabla = tabla.groupby('_c1')['_c2'].sum()
+    tabla = tabla.map(lambda lista: ':'.join(sorted(list(lista))))
+    # tabla._c2 = ':'.join(sorted(tabla._c2))
+    return tabla
 
 
 def pregunta_11():
