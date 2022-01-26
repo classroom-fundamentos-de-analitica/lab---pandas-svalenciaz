@@ -22,7 +22,7 @@ def pregunta_01():
     40
 
     """
-    return
+    return tbl0.shape[0]
 
 
 def pregunta_02():
@@ -33,7 +33,7 @@ def pregunta_02():
     4
 
     """
-    return
+    return tbl0.shape[1]
 
 
 def pregunta_03():
@@ -50,7 +50,10 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return
+    return tbl0.groupby('_c1')['_c1'].count()
+
+    agrupamiento = tabla.groupby('_c1').sum()
+    return agrupamiento
 
 
 def pregunta_04():
@@ -65,7 +68,7 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return
+    return tbl0.groupby('_c1')['_c2'].mean()
 
 
 def pregunta_05():
@@ -82,7 +85,7 @@ def pregunta_05():
     E    9
     Name: _c2, dtype: int64
     """
-    return
+    return tbl0.groupby('_c1')['_c2'].max()
 
 
 def pregunta_06():
@@ -94,7 +97,7 @@ def pregunta_06():
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     """
-    return
+    return tbl1['_c4'].drop_duplicates().sort_values().str.upper().to_list()
 
 
 def pregunta_07():
@@ -110,7 +113,7 @@ def pregunta_07():
     E    67
     Name: _c2, dtype: int64
     """
-    return
+    return tbl0.groupby('_c1')['_c2'].sum()
 
 
 def pregunta_08():
@@ -128,7 +131,9 @@ def pregunta_08():
     39   39   E    5  1998-01-26    44
 
     """
-    return
+    tabla = tbl0.copy()
+    tabla['suma'] = tabla['_c0'] +tabla['_c2']
+    return tabla
 
 
 def pregunta_09():
@@ -146,7 +151,9 @@ def pregunta_09():
     39   39   E    5  1998-01-26  1998
 
     """
-    return
+    tabla = tbl0.copy()
+    tabla['year'] = tabla._c3.str[0:4]
+    return tabla
 
 
 def pregunta_10():
@@ -218,3 +225,17 @@ def pregunta_13():
     Name: _c5b, dtype: int64
     """
     return
+
+print('1', pregunta_01())
+print('2', pregunta_02())
+print('3', pregunta_03())
+print('4', pregunta_04())
+print('5', pregunta_05())
+print('6', pregunta_06())
+print('7', pregunta_07())
+print('8', pregunta_08())
+print('9', pregunta_09())
+print('10', pregunta_10())
+print('11', pregunta_11())
+print('12', pregunta_12())
+print('13', pregunta_13())
